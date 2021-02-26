@@ -17,6 +17,10 @@
 # http://dx.doi.org/10.1016/j.rse.2017.10.034)                                                    # 
 ###################################################################################################
 
+# after installing bayts, you may need to install bfastSpatial
+# require(devtools)
+# install_github('dutri001/bfastSpatial')
+# require(bfastSpatial)
 require(bayts)
 
 ##############################################
@@ -56,7 +60,7 @@ anb <- baytsDD(tsL=list(ts1vh),formulaL=list(formula),pdfsdL=list(pdfsd),orderL=
 # (2) plot
 plotBayts(anb$bayts,ylimL=list(c(-20,-10),c(-10,5)),labL=list("VH [dB]"),plotflag = TRUE)
 
-
+require(bfastSpatial)
 ## Apply baytsSpatialDD and using forest mask to only apply to forest pixels
 # (1) Apply baytsSpatialDD (it may takes up to 5 minutes; try parallel computing at next step)
 out <- baytsDDSpatial(bL=list(s1vh), datesL=list(s1vh_date), pdfsdL=list(pdfsd), mask=fmask, start=start,formulaL=list(formula),orderL=list(order),PNFmin=PNFmin,chi=chi)
@@ -64,7 +68,7 @@ out <- baytsDDSpatial(bL=list(s1vh), datesL=list(s1vh_date), pdfsdL=list(pdfsd),
 plot(out,3)
 
 # (2) Apply baytsSpatialDD using parallel computing; using mc.calc function from bfastSpatial package 
-require(bfastSpatial)
+
 out2 <- baytsDDSpatial(bL=list(s1vh), datesL=list(s1vh_date), pdfsdL=list(pdfsd), mask=fmask, start=start,formulaL=list(formula),orderL=list(order),PNFmin=PNFmin,chi=chi,mc.cores=10)
 # plot confirmed changes
 plot(out2,2)
