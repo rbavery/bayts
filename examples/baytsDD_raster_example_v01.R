@@ -20,6 +20,7 @@
 # after installing bayts, you may need to install bfastSpatial
 # require(devtools)
 # install_github('dutri001/bfastSpatial')
+# install_github("jreiche/bayts")
 # require(bfastSpatial)
 require(bayts)
 
