@@ -1,11 +1,14 @@
 data(s1vv_lndvi_raster)
-layer_filename = format(as.Date(substr(names(lndvi),10,16), format="%Y%j"))
+layer_dates = format(as.Date(substr(names(lndvi),10,16), format="%Y%j"))
+layer_filenames = paste(layer_dates, "-lndvi.tif", sep="")
 for(i in 1:291) {
   single_band <- raster(lndvi, layer = i)
-  writeRaster(single_band, layer_filenames[i])
+  writeRaster(single_band, layer_filenames[i], overwrite=TRUE)
 }
-# get observation dates from raster brick
-lndvi_date <- as.Date(substr(names(lndvi),10,16), format="%Y%j")
-lndvi_date
-s1vv_date <- as.Date(substr(names(s1vv),2,11), format="%Y.%m.%d")
-s1vv_date
+
+layer_dates = format(as.Date(substr(names(s1vv),2,11), format="%Y.%m.%d"))
+layer_filenames = paste(layer_dates, "-s1vv.tif", sep="")
+for(i in 1:291) {
+  single_band <- raster(s1vv, layer = i)
+  writeRaster(single_band, layer_filenames[i], overwrite=TRUE)
+}
