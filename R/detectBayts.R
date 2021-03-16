@@ -60,6 +60,7 @@ detectBayts <- function (bayts, chi = 0.5, PNFmin = 0.5, start = NULL, end = NUL
             i <- 0
             prior <- as.double(bayts$PNF[t - 1])
             likelihood <- as.double(bayts$PNF[t])
+            # can be replaced with calcPosterior?
             postieror <- (prior * likelihood)/((prior * 
                                                   likelihood) + ((1 - prior) * (1 - likelihood)))
             bayts$Flag[t] <- "Flag"

@@ -78,14 +78,13 @@ lndviD_pdf <- c(c("gaussian","gaussian"),c(0,0.1),c(-0.5,0.125))
 chi = 0.9
 # (1c) Start date of monitoring
 start = 2016
-
+require(bfastSpatial)
 # (2) Apply baytsSpatial (it may takes up to 5 minutes; try parallel computing at next step)
 out <- baytsSpatial(list(s1vvD,lndviD),list(s1vv_date,lndvi_date),list(s1vvD_pdf,lndviD_pdf),chi=chi,start=start)
 # plot confirmed changes
 plot(out,3)
 
 # (3) Apply baytsSpatial using parallel computing; using mc.calc function from bfastSpatial package 
-require(bfastSpatial)
 out2 <- baytsSpatial(list(s1vvD,lndviD),list(s1vv_date,lndvi_date),list(s1vvD_pdf,lndviD_pdf),chi=chi,start=start,mc.cores = 10)
 # plot confirmed changes
 plot(out2,2)

@@ -11,6 +11,5 @@ Depends:
     raster,
     bfast,
     zoo
-
 LazyData: true
 RoxygenNote: 5.0.1.9000
