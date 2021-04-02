@@ -69,7 +69,7 @@ createBayts <- function (tsL=list(NULL,...), pdfL=list(NULL,...), bwf = c(0.1, 0
     for(i in 2:l){
       ts2 <- merge.zoo(ts1, calcPNF(ts1[,i], pdfL[[i]], bwf))
       names(ts2)[l+2] <- paste("PNF2")
-      #updating PNF using Bayesioan updating. this is aminor step compared to the time based updating done in detectBayts
+      #updating PNF using Bayesian updating. this is a minor step compared to the time based updating done in detectBayts
       # where both observations are not nan, updates the sentinel-1 based PNF
       ts1$PNF[which(!is.na(ts2$PNF)==!is.na(ts2$PNF2))] <- calcPosterior(ts2$PNF[which(!is.na(ts2$PNF)==!is.na(ts2$PNF2))],ts2$PNF2[which(!is.na(ts2$PNF)==!is.na(ts2$PNF2))])
       # where Sentinel-1 based PNF is nan, assigns the Landsat based PNF if it exists i guess?

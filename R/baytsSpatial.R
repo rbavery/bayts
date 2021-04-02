@@ -40,9 +40,9 @@ baytsSpatial <- function(bL = list(NULL,...), datesL=list(NULL,...), pdfL=list(N
   {
     is.integer(x) && length(x) == 0L
   }
-  
+  cell_index <<- 0 
   fun <- function(v) {
-    
+    cell_index <<- cell_index+1
     if(!all(is.na(v))){
       #get number of time series and create time series list
       l <- 0
@@ -102,7 +102,7 @@ baytsSpatial <- function(bL = list(NULL,...), datesL=list(NULL,...), pdfL=list(N
     }
   }
   
-  x <- mc.calc(b, fun=fun, mc.cores=mc.cores)
+  x <- calc(b, fun=fun, mc.cores=1) # mc.calc mc.cores
   names(x) <- c("flag","change.flagged","change.confirmed","Pflag","Pchange.confirmed")
   
   if (!is.null(out_file)) {writeRaster(x,filename=out_file,overwrite=TRUE)}

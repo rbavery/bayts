@@ -70,7 +70,7 @@ plot(out,3)
 
 # (2) Apply baytsSpatialDD using parallel computing; using mc.calc function from bfastSpatial package 
 
-out2 <- baytsDDSpatial(bL=list(s1vh), datesL=list(s1vh_date), pdfsdL=list(pdfsd), mask=fmask, start=start,formulaL=list(formula),orderL=list(order),PNFmin=PNFmin,chi=chi,mc.cores=10)
+out2 <- baytsDDSpatial(bL=list(s1vh), datesL=list(s1vh_date), pdfsdL=list(pdfsd), mask=fmask, start=start,formulaL=list(formula),orderL=list(order),PNFmin=PNFmin,chi=chi,mc.cores=10,  out_file = "bayts_spatial_output.tif")
 # plot confirmed changes
 plot(out2,2)
 

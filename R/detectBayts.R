@@ -60,13 +60,15 @@ detectBayts <- function (bayts, chi = 0.5, PNFmin = 0.5, start = NULL, end = NUL
             i <- 0
             prior <- as.double(bayts$PNF[t - 1])
             likelihood <- as.double(bayts$PNF[t])
-            # can be replaced with calcPosterior?
+            # Ry can be replaced with calcPosterior?
             postieror <- (prior * likelihood)/((prior * 
                                                   likelihood) + ((1 - prior) * (1 - likelihood)))
             bayts$Flag[t] <- "Flag"
             bayts$PChange[t] <- postieror
           }
           # (case 2) Flagged change at preveous time step: update PChange
+          # Ry these "Cases" seem unnecessary, same thing happens for this case as case 1
+          # except i gets incremented here... starts at 0 with the t
           if (bayts$Flag[(t - 1)] == "Flag") {
             prior <- as.double(bayts$PChange[t - 1])
             likelihood <- as.double(bayts$PNF[t])

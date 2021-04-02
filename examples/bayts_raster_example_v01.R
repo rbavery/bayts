@@ -46,21 +46,21 @@ lndviD <- deseasonalizeRaster(lndvi,p=0.95)
 ######################################################
 ######### plot original and deseasonalised time series
 
-plot(s1vv,85)
-cell <- click(s1vv, n=1, cell=TRUE)[,1]
+#plot(s1vv,85)
+#cell <- click(s1vv, n=1, cell=TRUE)[,1]
 #cell <- 4264
 
 # create time series using bfastts (bfast package)
-tlndvi <- bfastts(as.vector(lndvi[cell]),lndvi_date,type=c("irregular"))   # original Landsat NDVI
-tlndviD <- bfastts(as.vector(lndviD[cell]),lndvi_date,type=c("irregular")) # deseasonalised Landsat NDVI
-ts1vv <- bfastts(as.vector(s1vv[cell]),s1vv_date,type=c("irregular"))      # original Sentinel-1 VV
-ts1vvD <- bfastts(as.vector(s1vvD[cell]),s1vv_date,type=c("irregular"))    # deseasonalised Sentinel-1 VV
+#tlndvi <- bfastts(as.vector(lndvi[cell]),lndvi_date,type=c("irregular"))   # original Landsat NDVI
+#tlndviD <- bfastts(as.vector(lndviD[cell]),lndvi_date,type=c("irregular")) # deseasonalised Landsat NDVI
+#ts1vv <- bfastts(as.vector(s1vv[cell]),s1vv_date,type=c("irregular"))      # original Sentinel-1 VV
+#ts1vvD <- bfastts(as.vector(s1vvD[cell]),s1vv_date,type=c("irregular"))    # deseasonalised Sentinel-1 VV
 
 # plot time series
 # strong dry forest seasonality visible in the Landsat NDVI time series
-plotts(tsL=list(tlndvi,tlndviD),labL=list("LNDVI","LNDVI_deseasonalised"))
+#plotts(tsL=list(tlndvi,tlndviD),labL=list("LNDVI","LNDVI_deseasonalised"))
 # weaker dry forest seasonality in the Sentinel-1 VV time series
-plotts(list(ts1vv,ts1vvD),labL = list("S1VV [dB]","S1VV_deseasonalised [dB]"))
+#plotts(list(ts1vv,ts1vvD),labL = list("S1VV [dB]","S1VV_deseasonalised [dB]"))
 
 #############################################
 ######### apply baytsSpatial and plot results
@@ -85,6 +85,6 @@ out <- baytsSpatial(list(s1vvD,lndviD),list(s1vv_date,lndvi_date),list(s1vvD_pdf
 plot(out,3)
 
 # (3) Apply baytsSpatial using parallel computing; using mc.calc function from bfastSpatial package 
-out2 <- baytsSpatial(list(s1vvD,lndviD),list(s1vv_date,lndvi_date),list(s1vvD_pdf,lndviD_pdf),chi=chi,start=start,mc.cores = 10)
+out2 <- baytsSpatial(list(s1vvD,lndviD),list(s1vv_date,lndvi_date),list(s1vvD_pdf,lndviD_pdf),chi=chi,start=start, out_file= "bayts_spatial_result.tif",mc.cores = 10)
 # plot confirmed changes
 plot(out2,2)
